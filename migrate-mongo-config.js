@@ -1,7 +1,13 @@
+#!/usr/bin/env node
+require("dotenv").config();
+const DB_URI = process.env.DB_URI;
+const DB_PATH = DB_URI.substr(0, DB_URI.lastIndexOf("/")+1);
+const DB_NAME = DB_URI.split("/").pop();
+
 const config = {
   mongodb: {
-    url: "mongodb+srv://abhishekm:5yP4QGbFIE7wP4nL@cluster0.2nhzk.mongodb.net/",
-    databaseName: "SpiralyzeTest",
+    url: DB_PATH,
+    databaseName: DB_NAME,
 
     options: {
       useNewUrlParser: true, // removes a deprecation warning when connecting
