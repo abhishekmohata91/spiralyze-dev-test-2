@@ -6,7 +6,7 @@ const ObjectId = Schema.Types.ObjectId;
 const PostSchema = new Schema({
   title         : { type: String, require: true },
   description   : { type: String, require: true },
-  user          : { type: ObjectId, ref:'user', default: null },
+  user          : { type: ObjectId, ref:'user', required: true },
   comments      : [{ type: ObjectId, ref:'comment', default: null }],
   isDeleted     : { type: Boolean, default: false },
   deletedBy     : { type: ObjectId, ref:'user', default: null },

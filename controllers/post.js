@@ -12,7 +12,7 @@ exports.all = async (req, res, next) => {
   try {
     const posts = await POST.find({isDeleted: false}, '-__v -isDeleted -createdAt -updatedAt -deletedAt -deletedBy')
       .populate({path: 'user', select: 'firstName lastName'})
-      .populate({path: 'comments', select: 'message', populate: {path: 'user', select: 'firstName lastName'}});
+      .populate({path: 'comments', select: 'message', match: {isDeleted: false},  populate: {path: 'user', select: 'firstName lastName'}});
     return res.sendJson(200, posts);
   } catch (error) { next(error); }
 }
